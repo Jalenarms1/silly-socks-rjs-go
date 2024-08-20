@@ -2,7 +2,6 @@ import React from 'react'
 import Navbar from './Navbar'
 import { Footer } from './Footer'
 import { StickyCart } from './StickyCart'
-import { FreeShippingAlert } from './FreeShippingAlert'
 
 const Layout = ({children}: {children: React.ReactNode}) => {
   return (

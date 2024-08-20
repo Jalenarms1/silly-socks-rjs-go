@@ -1,11 +1,10 @@
-import React from 'react'
 
 const Slide = ({imageUrl}: {imageUrl: string}) => {
 
     return (
         <div className="carousel-item ">
             <img
-            src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
+            src={imageUrl}
             className="rounded-md" />
         </div>
     )

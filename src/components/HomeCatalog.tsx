@@ -1,8 +1,7 @@
-import React from 'react'
 import { CatalogSlides } from './CatalogSlides';
 import { FaSocks } from "react-icons/fa";
 import { LiaPuzzlePieceSolid } from "react-icons/lia";
-import { Product } from '@/types';
+import { Product } from '../types';
 import { FreeShippingAlert } from './FreeShippingAlert';
 
 type ProductType = {
@@ -33,7 +32,7 @@ export const HomeCatalog = () => {
         <div className="flex flex-col gap-5">
             <p className="text-4xl font-semibold p-2 text-black">Shop</p>
             {productTypeCards.map((c, i) => (
-                <div className="card  w-[98%] mx-auto shadow-sm shadow-zinc-500 border border-zinc-300 rounded-md bg-white">
+                <div key={i} className="card  w-[98%] mx-auto shadow-sm shadow-zinc-500 border border-zinc-300 rounded-md bg-white">
                     <CatalogSlides />
                     <div className="card-body shadow-inner">
                         <div className="flex items-center gap-2 text-black">

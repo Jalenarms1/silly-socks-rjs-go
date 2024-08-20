@@ -1,4 +1,3 @@
-import React from 'react'
 import { PiSealWarning } from 'react-icons/pi'
 
 export const FreeShippingAlert = () => {
