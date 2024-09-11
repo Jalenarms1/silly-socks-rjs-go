@@ -3,7 +3,7 @@ import logo from '../assets/sockslogo.png'
 
 export const Footer = () => {
   return (
-    <footer className="footer bg-zinc-900 text-neutral-content p-10">
+    <footer className="footer bg-zinc-950 text-neutral-content p-10">
         <div>
             <h6 className="footer-title">Services</h6>
             <a className="link link-hover">Branding</a>

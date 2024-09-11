@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom"
+import { useCartContext } from "../context/CartContext"
 
 export const StickyCart = () => {
+  const {getCartTotal, itemsInCart} = useCartContext()
+
   return (
-    <div className="navbar bg-white sticky bottom-0 w-full border-t border-zinc-400 shadow-sm shadow-zinc-200 text-black">
+    <Link to={"/cart"} className="navbar bg-zinc-950 sticky bottom-0 w-full border-t border-zinc-400 shadow-sm shadow-zinc-700 text-yellow-400 font-semibold">
         <div className="flex flex-1 items-center gap-2">
             <p className='font-semibold text-lg'>Total:</p>
-            <p className='text-lg '>$0</p>
+            <p className='text-lg '>${getCartTotal()}</p>
         </div>
         <div className="flex-none">
         <div className="dropdown dropdown-end">
@@ -17,12 +21,12 @@ export const StickyCart = () => {
                 viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
-                <span className="badge badge-sm indicator-item text-white">4</span>
+                <span className="badge badge-sm indicator-item text-yellow-400">{itemsInCart()}</span>
             </div>
             </div>
             <div
@@ -39,6 +43,6 @@ export const StickyCart = () => {
         </div>
         
         </div>
-    </div>
+    </Link>
   )
 }
