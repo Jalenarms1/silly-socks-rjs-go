@@ -1,11 +1,11 @@
 import { Product } from "../types"
-import { IoBagAddOutline, IoHeart, IoHeartSharp } from "react-icons/io5";
+import { IoBagAddOutline } from "react-icons/io5";
 import {Link} from "react-router-dom"
 import { useCartContext } from "../context/CartContext";
 import { LuLoader } from "react-icons/lu";
 
 const Slide = ({product}: {product: Product}) => {
-    const {addToCart, addToSaved, saved} = useCartContext()
+    const {addToCart} = useCartContext()
 
 
     return (
