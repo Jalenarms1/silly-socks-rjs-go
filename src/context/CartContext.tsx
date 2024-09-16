@@ -1,7 +1,7 @@
 import React, {useContext, createContext} from "react"
 import useLocalStorage from "../hooks/useLocalStorage"
 import { Product } from "../types"
-import { apiRoot } from "../utils"
+import { apiRoot, getCookie } from "../utils"
 
 type OrderItem = {
     product: Product,
@@ -99,6 +99,8 @@ export const CartContextProvider = ({children}: {children: React.ReactNode}) => 
 
     const submitCheckout = async () => {
 
+        const uid = getCookie()
+
         const reqBody = cart.map(c => {
             return {
                 product: c.product,
@@ -111,8 +113,11 @@ export const CartContextProvider = ({children}: {children: React.ReactNode}) => 
             {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    Authorization: `${uid ? uid : ""}`
+
                 },
+                
                 body: JSON.stringify(reqBody),
                 credentials: "include"
             }

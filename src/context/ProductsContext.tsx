@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext, createContext}  from "react"
 import { Product } from "../types"
-import { apiRoot } from "../utils"
+import { apiRoot, getCookie } from "../utils"
 
 
 
@@ -23,13 +23,7 @@ export const ProductContextProvider = ({children}: {children: React.ReactNode}) 
 
     useEffect(() => {
         const getProducts = async () => {
-            const cookies = document.cookie
-            let uid;
-            if (cookies) {
-                uid = cookies.split(`silly-socks-user=`)[1].split(";")[0]
-                console.log(cookies.split(`silly-socks-user=`)[1].split(";")[0]);
-
-            }
+            const uid = getCookie()
             
 
             const resp = await fetch(`${apiRoot}/products/list`, {
