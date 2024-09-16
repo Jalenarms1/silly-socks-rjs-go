@@ -9,6 +9,8 @@ export const apiRoot = "https://sillysocks-goth-production.up.railway.app/api"
 
 export const getCookie = () => {
     const cookies = document.cookie
+    console.log(cookies);
+    
     let uid;
     if (cookies) {
         uid = cookies.split(`silly-socks-user=`)[1].split(";")[0]
