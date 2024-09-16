@@ -117,7 +117,6 @@ export const CartContextProvider = ({children}: {children: React.ReactNode}) => 
                     Authorization: `${uid ? uid : ""}`
 
                 },
-                
                 body: JSON.stringify(reqBody),
                 credentials: "include"
             }

@@ -29,7 +29,8 @@ export const ProductContextProvider = ({children}: {children: React.ReactNode}) 
             const resp = await fetch(`${apiRoot}/products/list`, {
                 headers: {
                     Authorization: `${uid ? uid : ""}`
-                }
+                },
+                credentials: "include"
             })
             
             const data = await resp.json()
