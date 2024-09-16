@@ -23,8 +23,17 @@ export const ProductContextProvider = ({children}: {children: React.ReactNode}) 
 
     useEffect(() => {
         const getProducts = async () => {
-            const resp = await fetch(`${apiRoot}/products/list`, {credentials: "include"})
+            const cookies = document.cookie
+            const uid = cookies.split(`silly-socks-user=`)[1].split(";")[0]
+            console.log(cookies.split(`silly-socks-user=`)[1].split(";")[0]);
+            
 
+            const resp = await fetch(`${apiRoot}/products/list`, {
+                headers: {
+                    Authorization: `${uid}`
+                }
+            })
+            
             const data = await resp.json()
 
             console.log(data);
