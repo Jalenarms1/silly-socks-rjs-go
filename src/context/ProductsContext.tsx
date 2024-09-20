@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext, createContext}  from "react"
 import { Product } from "../types"
-import { apiRoot, getCookie } from "../utils"
+import { apiRoot } from "../utils"
 
 
 
