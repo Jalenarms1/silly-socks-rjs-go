@@ -1,51 +1,47 @@
 
 //  sillysocks-goth-production.up.railway.app
-export const apiRoot = "https://sillysocks-goth-production.up.railway.app/api"
-// export const apiRoot = "http://localhost:4444/api"
+// export const apiRoot = "https://sillysocks-goth-production.up.railway.app/api"
+export const apiRoot = "http://localhost:4444/api"
 
 export const TOKEN_KEY = "silly-socks-user-token"
 
 export const get = async (path: string) => {
     let token = localStorage.getItem(TOKEN_KEY) ?? ""
-    console.log(token);
     
-    if (token == "") {
+    if (token == "" || token == undefined) {
         const resp = await fetch(`${apiRoot}/user/token`)
 
         const data = await resp.json()
 
-        console.log("token data", data);
-        
-
         if (data) {
             localStorage.setItem(TOKEN_KEY, JSON.stringify(data))
             
-            token = data.token
+            token = data
         }
     } 
-
+    
     const resp = await fetch(`${apiRoot}${path}`, {
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `${JSON.parse(token)}`
+            "Authorization": `${token}`
         }
     })
 
-    return await resp.json()
+    return resp.json()
 
 
 }
 
 export const post = async (path: string, data: any) => {
     let token = localStorage.getItem(TOKEN_KEY) ?? ""
-    if (token == "") {
+    if (token == "" || token == undefined) {
         const resp = await fetch(`${apiRoot}/user/token`)
 
         const data = await resp.json()
 
-        if (data.token) {
-            localStorage.setItem(TOKEN_KEY, JSON.stringify(data.token))
-            token = data.token
+        if (data) {
+            localStorage.setItem(TOKEN_KEY, JSON.stringify(data))
+            token = data
         }
     } 
 
@@ -58,19 +54,19 @@ export const post = async (path: string, data: any) => {
         body: JSON.stringify(data)
     })
 
-    return await resp.json()
+    return resp.json()
 }
 
 export const put = async (path: string, data: any) => {
     let token = localStorage.getItem(TOKEN_KEY) ?? ""
-    if (token == "") {
+    if (token == "" || token == undefined) {
         const resp = await fetch(`${apiRoot}/user/token`)
 
         const data = await resp.json()
 
-        if (data.token) {
-            localStorage.setItem(TOKEN_KEY, JSON.stringify(data.token))
-            token = data.token
+        if (data) {
+            localStorage.setItem(TOKEN_KEY, JSON.stringify(data))
+            token = data
         }
     } 
 
@@ -83,6 +79,6 @@ export const put = async (path: string, data: any) => {
         body: JSON.stringify(data)
     })
 
-    return await resp.json()
+    return resp.json()
 }
 
