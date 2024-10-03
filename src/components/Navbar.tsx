@@ -7,8 +7,8 @@ const Navbar = () => {
   const {itemsInCart} = useCartContext()
 
   return (
-    <div className="flex justify-between bg-white items-center w-full px-4 shadow-sm shadow-zinc-300 text-black">
-        <div className="">
+    <div className="flex justify-center relative bg-black py-2 items-center w-full px-4 sm:px-8 shadow-sm shadow-zinc-200 text-black">
+        {/* <div className="">
           <div className="dropdown">
             <CiMenuFries className="text-3xl active:border border-zinc-300 active:scale-[.95] rounded-md font-semibold" />
             <ul
@@ -20,14 +20,12 @@ const Navbar = () => {
               <li><a>About</a></li>
             </ul>
           </div>
-        </div>
-        <div className="">
-          <Link to={"/"} className="">
-            <img src={logo} alt="logo" className="w-16 h-16"  />
-          </Link>
-        </div>
-        <div className="mr-4">
-          <Link to={"/cart"} className="indicator active:scale-[.95]">
+        </div> */}
+        <Link to={"/"} className="w-20 h-20">
+          <img src={logo} alt="logo" className="w-20 h-20 object-contain"  />
+        </Link>
+        <div className="mr-6 sm:m-8 absolute right-0">
+          <Link to={"/cart"} className="indicator active:scale-[.95] text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"

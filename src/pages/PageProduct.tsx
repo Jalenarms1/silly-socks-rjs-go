@@ -4,8 +4,9 @@ import { useProductsContext } from "../context/ProductsContext"
 import { IoCaretBackOutline } from "react-icons/io5";
 import {Link} from "react-router-dom"
 import { ProductView } from "../components/ProductView";
-import { RelatedProducts } from "../components/RelatedProducts";
-import { StickyCart } from "../components/StickyCart";
+import { ProductCarousel } from "../components/ProductCarousel";
+// import { RelatedProducts } from "../components/RelatedProducts";
+// import { StickyCart } from "../components/StickyCart";
 
 export const PageProduct = () => {
     const {productId} = useParams()
@@ -22,7 +23,7 @@ export const PageProduct = () => {
   
     
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col sm:mx-12">
         <div className=" text-white p-4 pb-2">
             <Link to={"/"}>
                 <button className="btn btn-outline border-white bg-red-600 text-white px-2 py-3 min-h-0 h-fit ">
@@ -32,8 +33,9 @@ export const PageProduct = () => {
             </Link>
         </div>
         <ProductView />
-        <RelatedProducts />
-        <StickyCart />
+        <ProductCarousel label="More socks" />
+        {/* <RelatedProducts /> */}
+        {/* <StickyCart /> */}
     </div>
   )
 }
