@@ -1,4 +1,3 @@
-import { CiMenuFries } from "react-icons/ci";
 import logo from '../assets/sockslogo.png'
 import {Link} from "react-router-dom"
 import { useCartContext } from "../context/CartContext";
@@ -8,19 +7,7 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-center relative bg-black py-2 items-center w-full px-4 sm:px-8 shadow-sm shadow-zinc-200 text-black">
-        {/* <div className="">
-          <div className="dropdown">
-            <CiMenuFries className="text-3xl active:border border-zinc-300 active:scale-[.95] rounded-md font-semibold" />
-            <ul
-              tabIndex={0}
-              className="menu menu-lg  dropdown-content bg-white z-[1] mt-3 rounded-sm p-2 shadow shadow-zinc-400"
-            >
-              <li><a>Homepage</a></li>
-              <li><a>Portfolio</a></li>
-              <li><a>About</a></li>
-            </ul>
-          </div>
-        </div> */}
+      
         <Link to={"/"} className="w-20 h-20">
           <img src={logo} alt="logo" className="w-20 h-20 object-contain"  />
         </Link>

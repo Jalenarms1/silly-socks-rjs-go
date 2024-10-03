@@ -1,28 +1,8 @@
-import { FaSocks } from "react-icons/fa";
-import { LiaPuzzlePieceSolid } from "react-icons/lia";
-import { CarouselCardType } from '../types';
-import { FreeShippingAlert } from './FreeShippingAlert';
+
 import { useProductsContext } from '../context/ProductsContext';
-import { CarouselCard } from './CarouselCard';
 import { IoBagAddOutline } from "react-icons/io5";
 import { useCartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
-
-
-const productTypeCards: CarouselCardType[] = [
-    {
-        type: "Silly Socks", 
-        icon: <FaSocks className='text-yellow-400 text-2xl' />, 
-        description: "Search through a variety of designs to find your funk. Available in men, woman and youth.",
-        filter: (data) => data.filter((d) => d.category == 'Socks')
-    },
-    {
-        type: "Croc Charms", 
-        icon: <LiaPuzzlePieceSolid className='text-2xl text-red-500' />, 
-        description: "Find gibbets for your favorite cartoons, sports teams and more. Attach them to your crocs for more style!",
-        filter: (data) => data.filter((d) => d.category == 'Charms')
-    }
-]
 
 export const ProductCarousel = ({label}: {label: string}) => {
     const {products} = useProductsContext()
