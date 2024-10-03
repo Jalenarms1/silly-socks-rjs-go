@@ -1,7 +1,7 @@
 import React, {useContext, createContext} from "react"
 import useLocalStorage from "../hooks/useLocalStorage"
 import { Product } from "../types"
-import { apiRoot, post } from "../utils"
+import { post } from "../utils"
 
 type OrderItem = {
     product: Product,
