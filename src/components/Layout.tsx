@@ -4,7 +4,7 @@ import { Footer } from './Footer'
 
 const Layout = ({children}: {children: React.ReactNode}) => {
   return (
-    <div className='w-full min-h-screen bg-zinc-100 flex flex-col relative'>
+    <div className='w-full min-h-screen bg-white flex flex-col relative'>
       <Navbar />
       {children}
       <Footer />

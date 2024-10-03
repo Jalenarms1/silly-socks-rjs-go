@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom"
 import { useCartContext } from "../context/CartContext"
+// import { FaCartShopping } from "react-icons/fa6"
 
 export const StickyCart = () => {
   const {getCartTotal, itemsInCart} = useCartContext()
 
   return (
-    <Link to={"/cart"} className="navbar bg-zinc-950 sticky bottom-0 w-full border-t border-zinc-400 shadow-sm shadow-zinc-700 text-yellow-400 font-semibold">
+    // <div className=" sticky bottom-0 flex justify-end  w-full ">
+    //     <Link to={"/cart"} className="w-20 h-20 rounded-full flex justify-center items-center bg-red-600 m-2">
+    //         <FaCartShopping className="text-3xl text-white" />
+    //     </Link>
+    // </div>
+    
+    <Link to={"/cart"} className="navbar bg-white sticky bottom-0 w-full border-t border-zinc-400 shadow-sm shadow-zinc-700 text-black font-semibold">
         <div className="flex flex-1 items-center gap-2">
             <p className='font-semibold text-lg'>Total:</p>
             <p className='text-lg '>${getCartTotal()}</p>

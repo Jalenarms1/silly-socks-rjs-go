@@ -22,7 +22,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="">
-          <Link to={"/"} className="btn btn-ghost">
+          <Link to={"/"} className="">
             <img src={logo} alt="logo" className="w-16 h-16"  />
           </Link>
         </div>
