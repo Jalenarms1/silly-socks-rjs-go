@@ -7,6 +7,8 @@ export const TOKEN_KEY = "silly-socks-user-token"
 
 export const get = async (path: string) => {
     let token = localStorage.getItem(TOKEN_KEY) ?? ""
+    console.log(token);
+    
     if (token == "") {
         const resp = await fetch(`${apiRoot}/user/token`)
 
