@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext, createContext}  from "react"
 import { Product } from "../types"
-import { apiRoot } from "../utils"
+import { apiRoot, get } from "../utils"
 
 
 
@@ -13,9 +13,10 @@ export const ProductContextProvider = ({children}: {children: React.ReactNode}) 
 
     const getProduct = async (productId: string) => {
         setCurrProduct(null)
-        const resp = await fetch(`${apiRoot}/products/find/${productId}`)
+        // const resp = await fetch(`${apiRoot}/products/find/${productId}`)
+        const data = await get(`/products/find/${productId}`)
 
-        const data = await resp.json()
+        // const data = await resp.json()
 
         setCurrProduct(data)
     }
@@ -25,11 +26,12 @@ export const ProductContextProvider = ({children}: {children: React.ReactNode}) 
         const getProducts = async () => {
             
 
-            const resp = await fetch(`${apiRoot}/products/list`, {
-                credentials: "include"
-            })
+            // const resp = await fetch(`${apiRoot}/products/list`, {
+            //     credentials: "include"
+            // })
+            const data = await get(`/products/list`)
             
-            const data = await resp.json()
+            // const data = await resp.json()
 
             console.log(data);
 

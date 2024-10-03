@@ -1,7 +1,7 @@
 import React, {useContext, createContext} from "react"
 import useLocalStorage from "../hooks/useLocalStorage"
 import { Product } from "../types"
-import { apiRoot } from "../utils"
+import { apiRoot, post } from "../utils"
 
 type OrderItem = {
     product: Product,
@@ -108,19 +108,21 @@ export const CartContextProvider = ({children}: {children: React.ReactNode}) => 
             }
         })
 
-        const resp = await fetch(`${apiRoot}/stripe/checkout`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
+        const data = await post(`/stripe/checkout`, reqBody)
 
-                },
-                body: JSON.stringify(reqBody),
-                credentials: "include"
-            }
-        )
+        // const resp = await fetch(`${apiRoot}/stripe/checkout`,
+        //     {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json",
 
-        const data = await resp.json()
+        //         },
+        //         body: JSON.stringify(reqBody),
+        //         credentials: "include"
+        //     }
+        // )
+
+        // const data = await resp.json()
 
         if (data.checkoutUrl) {
             window.location.href = data.checkoutUrl
