@@ -6,8 +6,9 @@ const Navbar = () => {
   const {itemsInCart} = useCartContext()
 
   return (
-    <div className="flex justify-center relative bg-black py-2 items-center w-full px-4 sm:px-8 shadow-sm shadow-zinc-200 text-black">
-      
+    <div className='sm:px-12 sm:mx-auto w-full '>
+      <div className="flex justify-center relative bg-black py-2 items-center w-full px-4 sm:rounded-bl-md sm:rounded-br-md shadow-sm shadow-zinc-200 text-black">
+        
         <Link to={"/"} className="w-20 h-20">
           <img src={logo} alt="logo" className="w-20 h-20 object-contain"  />
         </Link>
@@ -28,7 +29,9 @@ const Navbar = () => {
             <span className="badge badge-sm indicator-item text-white">{itemsInCart()}</span>
           </Link>
         </div>
-    </div>  
+      </div>  
+    </div>
+    
   )
 }
 

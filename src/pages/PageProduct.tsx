@@ -26,7 +26,7 @@ export const PageProduct = () => {
     <div className="flex flex-col sm:mx-12">
         <div className=" text-white p-4 pb-2">
             <Link to={"/"}>
-                <button className="btn btn-outline border-white bg-red-600 text-white px-2 py-3 min-h-0 h-fit ">
+                <button className="btn border-white bg-red-600 hover:bg-red-700 text-white px-2 py-3 min-h-0 h-fit ">
                     <IoCaretBackOutline /> Go back
                 </button>
             
