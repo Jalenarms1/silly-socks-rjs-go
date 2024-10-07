@@ -35,7 +35,7 @@ export const ProductContextProvider = ({children}: {children: React.ReactNode}) 
 
             console.log(data);
 
-            setProducts(data)
+            setProducts(data ?? [])
             
         }
 
