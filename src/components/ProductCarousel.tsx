@@ -21,7 +21,7 @@ export const ProductCarousel = ({label}: {label: string}) => {
                         <Link to={`/product/${p.id}`} >
                             <img
                                 src={p.image}
-                                alt="product-image"
+                                alt={p.image}
                                 className="w-full h-96 sm:object-contain object-cover cursor-pointer" />
                         </Link>
                         
