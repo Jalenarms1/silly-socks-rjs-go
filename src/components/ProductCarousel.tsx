@@ -17,7 +17,7 @@ export const ProductCarousel = ({label}: {label: string}) => {
             ))} */}
             <div className="carousel">
                 {products.map((p) => (
-                    <div key={p.id} className="carousel-item w-80  h-[450px] relative shadow-sm shadow-zinc-200">
+                    <div key={p.id} className="carousel-item w-72  h-[450px] relative shadow-sm shadow-zinc-200">
                         <Link to={`/product/${p.id}`} >
                             <img
                                 src={p.image}
