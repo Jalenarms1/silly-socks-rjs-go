@@ -47,7 +47,7 @@ export const ProductCarousel = ({label}: {label: string}) => {
                     </div>
                 ))}
                 {products.length == 0 && [0,1,2,4,5,6,7,8,9,10].map((i: number) => (
-                    <div className='sm:min-w-64 min-w-60 shadow-sm h-96 flex justify-center items-center'>
+                    <div key={i} className='sm:min-w-64 min-w-60 shadow-sm h-96 flex justify-center items-center'>
                         <TbLoader className='animate-spin text-2xl'/>
                     </div>
                 ))}
