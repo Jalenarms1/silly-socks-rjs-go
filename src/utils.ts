@@ -43,6 +43,7 @@ export const post = async (path: string, data: any) => {
             localStorage.setItem(TOKEN_KEY, JSON.stringify(data))
             token = data
         }
+
     } 
 
     const resp =  await fetch(`${apiRoot}${path}`, {

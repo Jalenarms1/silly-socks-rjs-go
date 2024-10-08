@@ -3,6 +3,7 @@ import { useProductsContext } from '../context/ProductsContext';
 import { IoBagAddOutline } from "react-icons/io5";
 import { useCartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
+import { TbLoader } from 'react-icons/tb';
 
 export const ProductCarousel = ({label}: {label: string}) => {
     const {products} = useProductsContext()
@@ -17,12 +18,12 @@ export const ProductCarousel = ({label}: {label: string}) => {
             ))} */}
             <div className="carousel">
                 {products.map((p) => (
-                    <div key={p.id} className="carousel-item w-72  h-[450px] relative shadow-sm shadow-zinc-200">
+                    <div key={p.id} className="carousel-item sm:w-64 w-60  h-[450px] relative shadow-sm shadow-zinc-200">
                         <Link to={`/product/${p.id}`} >
                             <img
                                 src={p.image}
                                 alt={p.image}
-                                className="w-full h-96 sm:object-contain object-cover cursor-pointer" />
+                                className="w-full h-96  object-contain cursor-pointer" />
                         </Link>
                         
                         <div className="absolute top-0 left-0 p-2 m-2">
@@ -45,7 +46,11 @@ export const ProductCarousel = ({label}: {label: string}) => {
                         </div>
                     </div>
                 ))}
-                
+                {products.length == 0 && [0,1,2,4,5,6,7,8,9,10].map((i: number) => (
+                    <div className='sm:min-w-64 min-w-60 shadow-sm h-96 flex justify-center items-center'>
+                        <TbLoader className='animate-spin text-2xl'/>
+                    </div>
+                ))}
                 
             </div>
             

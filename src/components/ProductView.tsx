@@ -11,7 +11,7 @@ export const ProductView = () => {
     <>
         {currProduct ? <div className=" rounded-md flex flex-col w-[85%] sm:w-full mx-auto sm:mx-0 p-3 gap-5 pb-5 mb-5">
             <div className="flex flex-col sm:flex-row sm:gap-8 gap-5">
-                <img src={currProduct?.image} alt={currProduct?.name} className="h-96 sm:w-72  shadow-sm shadow-zinc-200 rounded-md" />
+                <img src={currProduct?.image} alt={currProduct?.name} className="h-80 w-72 sm:mx-0 mx-auto  shadow-sm shadow-zinc-200 rounded-md" />
                 <div className="flex flex-col w-full gap-2">
                     <div className="flex flex-col">
                         <p className="text-3xl font-semibold text-black">
