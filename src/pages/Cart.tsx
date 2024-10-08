@@ -34,7 +34,7 @@ export const Cart = () => {
 
 
   return (
-    <div className="min-h-screen p-6 w-full">
+    <div className="min-h-screen p-6 w-full font-mono">
         <div className="border-b pb-2 border-zinc-400 mb-4">
             {queryP.get("orderStatus") != "success" ? <p className="text-5xl font-semibold text-black">Cart</p>
             : <div className="bg-green-400 text-green-800 p-3 rounded-md ">
@@ -45,7 +45,7 @@ export const Cart = () => {
 
         </div>
         <div className="flex sm:flex-row flex-col w-full">
-            <div className="flex flex-col gap-3 w-1/2">
+            <div className="flex flex-col gap-3 sm:w-1/2">
                 {cart.map((ci,i) => (
                     <div key={i} className="flex items-start p-2  gap-2 h-fit bg-zinc-900 rounded-md">
                         <div className="bg-slate-700">
@@ -74,8 +74,8 @@ export const Cart = () => {
                 ))}
                 {cart.length == 0 && <Link to={"/"} className="btn btn-outline mt-5 w-fit px-6 text-black">Shop now</Link>}
             </div>
-            {cart.length > 0 && <div className="flex flex-col items-end text-black mt-5 sm:mt-0 text-base w-1/2">
-                <div className="py-2 flex flex-col gap-2 w-full px-8">
+            {cart.length > 0 && <div className="flex flex-col items-end text-black mt-5 sm:mt-0 text-base sm:w-1/2">
+                <div className="py-2 flex flex-col gap-2 w-full sm:px-8">
                     <div className="flex items-center justify-between gap-10 w-full">
                         <p className="font-semibold">Subtotal:</p>
                         <p>${total}</p>
@@ -93,10 +93,11 @@ export const Cart = () => {
                         <p>${(total+tax+shipping).toFixed(2)}</p>
                     </div>
                 </div>
-                <button onClick={submitCheckout} className="btn btn-warning mt-3 flex items-center w-1/2 px-6 mx-8">
+                <button onClick={submitCheckout} className="btn btn-warning mt-3 flex items-center  px-6">
                     <MdOutlineShoppingBag className="text-2xl" />
                     <span className="text-base">Checkout</span>
                 </button>
+                
 
             </div>}
         </div>
