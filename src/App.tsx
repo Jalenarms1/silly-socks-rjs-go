@@ -1,23 +1,31 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import './App.css'
-import Layout from './components/Layout'
-import { PageHome } from './pages/PageHome'
-import { PageProduct } from './pages/PageProduct'
-import { Cart } from './pages/Cart'
+import ShopView from './Shop/ShopView'
+import { CartProvider } from './context/useCartContext'
+import Cart from './Cart/Cart'
+import OrderView from './Orders/OrderView'
+import ProductView from './Shop/ProductView'
+
 
 function App() {
 
   return (
-    <Router>
-      <Layout>
-          {/* <PageHome /> */}
+    <>
+      <CartProvider>
+        <Router>
           <Routes>
-            <Route path='/product/:productId' element={<PageProduct />} />
-            <Route path='/cart' element={<Cart />}  />
-            <Route path='*' element={<PageHome />}  />
+            <Route path="/" element={<ShopView />} />
+            <Route path='/cart' element={<Cart/>} />
+            <Route path='/cart/success' element={<Cart isSuccess={true}/>} />
+            <Route path='/order/:orderId' element={<OrderView />} />
+            <Route path='/products/:productId' element={<ProductView />} />
+
+
           </Routes>
-      </Layout>
-    </Router>
+        </Router>
+
+      </CartProvider>
+    </>
   )
 }
 

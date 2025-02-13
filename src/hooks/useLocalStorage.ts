@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 
-function useLocalStorage<T>(key: string, initialValue: T): [T, React.Dispatch<React.SetStateAction<T>>] {
+export const useLocalStorage = <T>(key: string, initialValue: T): [T, (value: T) => void] => {
+  // Initialize state with the value from localStorage or the initial value
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
-      const item = window.localStorage.getItem(key);
+      const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
       console.error("Error reading localStorage key:", key, error);
@@ -11,15 +12,19 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, React.Dispatch<Re
     }
   });
 
-  useEffect(() => {
+  // Function to update both state and localStorage
+  const setValue = (value: T) => {
     try {
-      window.localStorage.setItem(key, JSON.stringify(storedValue));
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value;
+
+      setStoredValue(valueToStore);
+      localStorage.setItem(key, JSON.stringify(valueToStore));
     } catch (error) {
       console.error("Error setting localStorage key:", key, error);
     }
-  }, [key, storedValue]);
+  };
 
-  return [storedValue, setStoredValue];
+  return [storedValue, setValue];
 }
 
-export default useLocalStorage;
