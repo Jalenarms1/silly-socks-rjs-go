@@ -29,15 +29,15 @@ const Cart = ({isSuccess = false}: {isSuccess?: boolean}) => {
     const navigate = useNavigate()
 
     const getSubTotal = (): number => {
-        return parseFloat(cartItems.reduce((acc, ci) => acc += ci.subTotal, 0).toFixed(2))
+        return cartItems.reduce((acc, ci) => acc += ci.subTotal, 0)
     }
 
     const getTax = (): number => {
-        return parseFloat(((getSubTotal() * 1.08) - getSubTotal()).toFixed(2))
+        return ((getSubTotal() * 1.08) - getSubTotal())
     }
 
     const getTotalWTax = (): number => {
-        return parseFloat((getTax() + getSubTotal() + 5).toFixed(2)) 
+        return getTax() + getSubTotal() + 500
     }
 
     useEffect(() => {
@@ -55,26 +55,37 @@ const Cart = ({isSuccess = false}: {isSuccess?: boolean}) => {
 
     const placeOrder = async () => {
         console.log("getting checkout url");
-        const order: Order = {
-            id: crypto.randomUUID().toUpperCase(),
-            cartItems,
-            subTotal: getSubTotal(),
-            tax: getTax(),
-            shipping: 5,
-            finalTotal: getTotalWTax(),
-            status: "Unpaid",
-            createdAt: Date.now()
-        }
+        // const order: Order = {
+        //     id: crypto.randomUUID().toUpperCase(),
+        //     cartItems,
+        //     subTotal: getSubTotal(),
+        //     tax: getTax(),
+        //     shipping: 5,
+        //     finalTotal: getTotalWTax(),
+        //     status: "Unpaid",
+        //     createdAt: Date.now()
+        // }
         
-        const createCheckout = httpsCallable<{order: Order }, { sessionUrl: string }>(functions, "create_checkout")
+        // const createCheckout = httpsCallable<{order: Order }, { sessionUrl: string }>(functions, "create_checkout")
 
         try {
-            const resp = await createCheckout({order})
+            const resp = await fetch(`${import.meta.env.VITE_API_DOMAIN}/checkout`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({cartItems})
+            })
 
-            console.log(resp.data);
+            if (resp.status == 200) {
+                const data: {sessionUrl: string} = await resp.json()
+    
+                console.log(data.sessionUrl);
+    
+                
+                window.location.href = data.sessionUrl
 
-            
-            window.location.href = resp.data.sessionUrl
+            }
             
         } catch (error) {
             console.log(error);
@@ -118,7 +129,7 @@ const Cart = ({isSuccess = false}: {isSuccess?: boolean}) => {
                 <img src={logo} alt="socks logo" className='w-10 h-10 mx-2' />
                 <div className="w-full flex justify-between items-center border-b border-zinc-100 p-2">
                     <p className='text-3xl'>Cart</p>
-                    {cartItems.length > 0 && <p className='text-base text-green-500'>${getTotalWTax().toFixed(2)}</p>}
+                    {cartItems.length > 0 && <p className='text-base text-green-500'>${(getTotalWTax() / 100).toFixed(2)}</p>}
                 </div>
                 {/* <Backbar /> */}
 
@@ -152,19 +163,19 @@ const Cart = ({isSuccess = false}: {isSuccess?: boolean}) => {
                                 <p className='text-sm text-zinc-600'>Total:</p>
                             </div>
                             <div className="flex flex-col gap-2 p-2 pt-10">
-                                <p className='text-sm text-black'>${getSubTotal()}</p>
+                                <p className='text-sm text-black'>${(getSubTotal() / 100).toFixed(2)}</p>
 
-                                <p className='text-sm text-black'>${getTax()}</p>
+                                <p className='text-sm text-black'>${(getTax() / 100).toFixed(2)}</p>
 
                                 <p className='text-sm text-black'>$5.00</p>
 
 
-                                <p className='text-sm text-black'>${getTotalWTax().toFixed(2)}</p>
+                                <p className='text-sm text-black'>${(getTotalWTax() / 100).toFixed(2)}</p>
                             </div>
                         </div>
                         
-                        <div className="w-full">
-                            <button onClick={placeOrder} className='bg-yellow-400 fixed z-[3] bottom-[100px] w-[90vw] mx-auto text-black font-bold text-lg p-1 rounded-sm shadow-md active:scale-[.95]'>Place Order</button>
+                        <div className="w-full flex justify-center">
+                            <button onClick={placeOrder} className='bg-yellow-400 fixed z-[3] bottom-[100px] w-[90vw] text-black font-bold text-lg p-1 rounded-sm shadow-md shadow-zinc-600 active:scale-[.95]'>Place Order</button>
 
                         </div>
                     </div>

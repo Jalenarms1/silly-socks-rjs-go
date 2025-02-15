@@ -23,7 +23,7 @@ const ProductCard = ({product, addToCart, removeFromCart, existingCartItem, onNa
         <img src={product.image} alt='image product' className='object-fill min-h-56 max-h-56 w-full' />
         <div className="flex flex-col p-2 flex-1 gap-2">
             <div className='flex justify-between items-center '>
-                <p className='text-yellow-400 font-bold text-lg'>${product.price}</p>
+                <p className='text-yellow-400 font-bold text-lg'>${(product.price / 100)}</p>
                 <IoIosHeartEmpty className='text-3xl text-zinc-400 active:scale-[.95]' />
             </div>
             <div className="flex flex-col justify-between flex-1">

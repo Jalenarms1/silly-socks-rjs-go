@@ -34,7 +34,7 @@ const ShopView = () => {
 
   const getProducts = async () => {
     try {
-      const resp = await fetch("http://localhost:5050/products", {
+      const resp = await fetch(import.meta.env.VITE_API_DOMAIN + "/products", {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
