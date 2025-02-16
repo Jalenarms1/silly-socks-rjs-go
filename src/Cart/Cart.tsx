@@ -33,7 +33,12 @@ const Cart = ({isSuccess = false}: {isSuccess?: boolean}) => {
     }
 
     const getTax = (): number => {
-        return ((getSubTotal() * 1.08) - getSubTotal())
+        console.log((parseFloat(((getSubTotal() / 100) * 1.08).toFixed(2))) * 100);
+        console.log(getSubTotal());
+        console.log((parseFloat(((getSubTotal() / 100) * 1.08).toFixed(2))) * 100  - getSubTotal());
+        
+        
+        return (parseFloat(((getSubTotal() / 100) * 1.08).toFixed(2))) * 100 - getSubTotal()
     }
 
     const getTotalWTax = (): number => {

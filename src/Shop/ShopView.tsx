@@ -96,20 +96,23 @@ const ShopView = () => {
               <option value="Price: low to high" className='text-xs'>Price: high to low</option>
             </select>
           </div>
-          <ProductGrid products={products} renderItem={(product) => (
-            <ProductCard 
-                key={product.id} 
-                product={product} 
-                addToCart={() => addToCart(product)} 
-                removeFromCart={() => removeFromCart(product, true)} 
-                existingCartItem={cartItems.find((ci) => ci.product.id == product.id)}
-                onNavigate={() => navigate(`/products/${product.id}`)}
-            />
-          )}/>
+          <div className="flex flex-col">
+            <ProductGrid products={products} renderItem={(product) => (
+              <ProductCard 
+                  key={product.id} 
+                  product={product} 
+                  addToCart={() => addToCart(product)} 
+                  removeFromCart={() => removeFromCart(product, true)} 
+                  existingCartItem={cartItems.find((ci) => ci.product.id == product.id)}
+                  onNavigate={() => navigate(`/products/${product.id}`)}
+              />
+            )}/>
 
-          <div className="max-w-[100vw] bg-black flex-1 flex flex-col pb-40 overflow-x-auto">
-            <p className='p-2 text-xl font-bold text-zinc-300'>Recently Viewed</p>
-            <ProductCarousel />
+            <div className="max-w-[100vw] bg-black flex-1 flex flex-col pb-40 overflow-x-auto pt-10">
+              <p className='p-2 text-xl font-bold text-zinc-300'>Recently Viewed</p>
+              <ProductCarousel />
+            </div>
+
           </div>
         </div>
         <TabBar />
