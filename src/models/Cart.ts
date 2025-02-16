@@ -1,5 +1,6 @@
 export type CartItem = {
     id: string,
+    productId: string,
     product: Product,
     quantity: number,
     subTotal: number

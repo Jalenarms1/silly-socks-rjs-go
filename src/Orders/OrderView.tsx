@@ -7,6 +7,7 @@ import { Order } from '../models/Order';
 import { LuTrash2 } from 'react-icons/lu';
 import TabBar from '../TabBar';
 import { useCartContext } from '../context/useCartContext';
+import OrderCartItem from './OrderCartItem';
 
 const OrderView = () => {
     const {orderId} = useParams()
@@ -15,13 +16,19 @@ const OrderView = () => {
     const {clearCart, cartItems} = useCartContext()
 
     const getOrder = async (orderId: string) => {
-        const getOrder = httpsCallable<{orderId: string}, {order: Order}>(functions, "get_order")
 
-        const resp = await getOrder({orderId})
+        const resp = await fetch(import.meta.env.VITE_API_DOMAIN + "/order/" + orderId, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
 
-        console.log(resp.data);
+        const data: Order = await resp.json() 
 
-        setOrder(resp.data.order)
+        console.log(data);
+
+        setOrder(data)
         
     }
 
@@ -111,16 +118,7 @@ const OrderView = () => {
                     <p className='text-xs text-zinc-400'>Items</p>
 
                     {order.cartItems.length > 0 && order.cartItems.slice(0, Math.min(3, order.cartItems.length)).map(ci => (
-                        <div key={ci.id} className='rounded-md border border-zinc-200 flex items-start gap-2'>
-                            <img src={ci.product.image} alt='cart item' className='w-20 h-20 object-fill p-2 bg-yellow-300 shadow-md'/>
-                            <div className="flex flex-col gap-2">
-                                <p className='text-base font-semibold text-red-500'>{ci.product.name}</p>
-                                <p className='text-zinc-400 text-xs'>Quanitity: <span className='text-black'>{ci.quantity}</span></p>
-                                <p className='text-zinc-400 text-xs'>Price: <span className='text-black'>{ci.product.price}</span></p>
-
-                            </div>
-                        
-                        </div>
+                        <OrderCartItem ci={ci} />
                     ))}
                 </div>
                 <div className="flex items-center">

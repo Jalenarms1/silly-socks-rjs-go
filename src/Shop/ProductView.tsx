@@ -6,6 +6,7 @@ import { IoIosHeartEmpty, IoMdCart } from 'react-icons/io'
 import { useCartContext } from '../context/useCartContext'
 import { IoIosArrowBack } from "react-icons/io";
 import Backbar from '../Shared/Backbar'
+import { getProduct } from '../utils'
 
 
 const ProductView = () => {
@@ -15,30 +16,32 @@ const ProductView = () => {
     const {removeFromCart, addToCart, cartItems} = useCartContext()
     const navigate = useNavigate()
 
-    const getProduct = async (productId: string) => {
-        try {
-            const resp = await fetch(import.meta.env.VITE_API_DOMAIN + "/products/" + productId, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
+    const getProductById = async (productId: string) => {
+        // try {
+        //     const resp = await fetch(import.meta.env.VITE_API_DOMAIN + "/products/" + productId, {
+        //         method: "GET",
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         }
+        //     })
 
-            if (resp.status == 200) {
-                const product: Product = await resp.json()
+        //     if (resp.status == 200) {
+        //         const product: Product = await resp.json()
     
-                setProduct(product)
+        //         setProduct(product)
 
-            }
-        } catch (error) {
-            console.log(error);
+        //     }
+        // } catch (error) {
+        //     console.log(error);
             
-        }
+        // }
+        let p = await getProduct(productId)
+        setProduct(p)
     }
 
     useEffect(() => {
         if (productId) {
-            getProduct(productId)
+            getProductById(productId)
         }
     }, [productId])
 
