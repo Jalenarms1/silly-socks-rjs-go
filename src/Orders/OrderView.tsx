@@ -61,24 +61,21 @@ const OrderView = () => {
         }
     }, [searchParams])
 
-    const millisecondsToDateTime = (timestamp: number) => {
-        const date = new Date(timestamp)
-
-        console.log(date);
+    const secondsToDateTime = (timestamp: number) => {
+        const date = new Date(timestamp * 1000)
 
         let hour = date.getHours()
-        const minutes = date.getMinutes()
-        const isAm = hour < 12
-        const month = date.getMonth()
-        const day = date.getDate()
-        const year = date.getFullYear()
+        const min = date.getMinutes().toString().padEnd(2, "0")
 
         hour = hour % 12 || 12
 
-        console.log(hour);
-        console.log(minutes);
+        const dateStr = date.toLocaleDateString("en-US", {
+            month: "2-digit",
+            day: "2-digit",
+            year: "numeric"
+        })
 
-        return `${hour.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")} ${isAm ? "AM" : "PM"} ${(month + 1)}/${day}/${year}`
+        return `${hour.toString().padStart(2, "0")}:${min} ${dateStr}`
     }
 
   return (
@@ -101,7 +98,7 @@ const OrderView = () => {
 
                 <div className="flex flex-col">
                     <p className='text-xs text-zinc-400'>Placed at</p>
-                    <p className=''>{millisecondsToDateTime(order.createdAt)}</p>
+                    <p className=''>{secondsToDateTime(order.createdAt)}</p>
                 </div>
 
                 <div className="flex flex-col">
