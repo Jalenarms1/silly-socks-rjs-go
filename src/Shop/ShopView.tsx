@@ -82,14 +82,14 @@ const ShopView = () => {
         <TopBar />
         <div className="flex-1 flex flex-col gap-5 ">
           <SearchAndFilter />
-          <div className="flex justify-end text-black pr-2 items-center gap-2 ">
+          {/* <div className="flex justify-end text-black pr-2 items-center gap-2 ">
             <p className='text-sm text-zinc-400'>Sort by</p>
             <select name="" id="" className='border rounded-md border-zinc-200 p-1 text-sm'>
               <option value="Price: low to high" className='text-xs'>--</option>
               <option value="Price: low to high" className='text-xs'>Price: low to high</option>
               <option value="Price: low to high" className='text-xs'>Price: high to low</option>
             </select>
-          </div>
+          </div> */}
           <div className="flex flex-col">
             <ProductGrid products={products} renderItem={(product) => (
               <ProductCard 
@@ -103,7 +103,16 @@ const ShopView = () => {
 
             <div className="max-w-[100vw] bg-black flex-1 flex flex-col pb-40 overflow-x-auto pt-10">
               <p className='p-2 text-xl font-bold text-zinc-300'>Recently Viewed</p>
-              <ProductCarousel />
+              <ProductCarousel products={products} renderItem={(product: Product) => (
+                <ProductCard 
+                  key={product.id} 
+                  product={product} 
+                  addToCart={() => addToCart(product)} 
+                  existingCartItem={cartItems.find((ci) => ci.product.id == product.id)}
+                  onNavigate={() => navigate(`/products/${product.id}`)}
+                />
+              )}
+              />
             </div>
 
           </div>
