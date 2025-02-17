@@ -81,7 +81,11 @@ const ShopView = () => {
     <div className="min-h-screen relative w-full overflow-x-hidden scrollbar-hide flex flex-col font-mono bg-white">
         <TopBar />
         <div className="flex-1 flex flex-col gap-5 ">
-          <SearchAndFilter />
+          <div className="flex justify-between p-2">
+            <p className='text-3xl font-bold hidden md:block'>Shop</p>
+            <SearchAndFilter />
+
+          </div>
           {/* <div className="flex justify-end text-black pr-2 items-center gap-2 ">
             <p className='text-sm text-zinc-400'>Sort by</p>
             <select name="" id="" className='border rounded-md border-zinc-200 p-1 text-sm'>
