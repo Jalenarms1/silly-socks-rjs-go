@@ -75,13 +75,13 @@ const ProductView = () => {
                             <IoMdCart className='text-white' />
                             <p className='text-sm text-white font-semibold'>Add to cart</p>
                         </div> : (
-                            <div className='flex items-center justify-center w-full bg-red-500 p-1  rounded-sm  text-black gap-2'>
-                                <button onClick={() => removeFromCart(product, true)} className=' text-lg px-3'>-</button>
-                                <p className='text-sm'>{existingCartItem.quantity}</p>
-                                <button onClick={() => addToCart(product)} className='text-lg px-3'>+</button>
+                            <div className=' items-center justify-center w-full text-white grid grid-cols-3  rounded-sm   gap-2 '>
+                                <button onClick={() => removeFromCart(product, true)} className='bg-red-500 rounded-md text-lg px-2 py-4 '>-</button>
+                                <p className='text-base text-black font-bold text-center'>{existingCartItem.quantity}</p>
+                                <button onClick={() => addToCart(product)} className='text-lg px-2 py-4  bg-red-500 rounded-md'>+</button>
                             </div>
                         )}
-                        <div onClick={() => addToCart(product)} className='flex items-center justify-center active:scale-[.95] w-full border border-red-500 px-2 py-4 rounded-sm gap-2 text-red-500'>
+                        <div onClick={() => navigate("/cart")} className='flex items-center justify-center active:scale-[.95] w-full border border-red-500 px-2 py-4 rounded-sm gap-2 text-red-500'>
                             {/* <IoMdCart className='text-red-500' /> */}
                             <p className='text-sm text-red-500 font-semibold'>Buy now</p>
                         </div>

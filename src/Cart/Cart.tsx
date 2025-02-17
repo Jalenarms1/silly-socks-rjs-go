@@ -136,7 +136,7 @@ const Cart = ({isSuccess = false}: {isSuccess?: boolean}) => {
                     <p className='text-3xl'>Cart</p>
                     {cartItems.length > 0 && <p className='text-base text-green-500'>${(getTotalWTax() / 100).toFixed(2)}</p>}
                 </div>
-                {/* <Backbar /> */}
+                <Backbar />
 
                 {cartItems.length > 0 ? <div className="flex-1 overflow-auto p-2">
                     <div className="flex flex-col gap-2 min-h-[100vh] max-h-[100vh]">
