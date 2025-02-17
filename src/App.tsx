@@ -6,9 +6,14 @@ import Cart from './Cart/Cart'
 import OrderView from './Orders/OrderView'
 import ProductView from './Shop/ProductView'
 import SavedProductsView from './Saved/SavedProductsView'
+import { useEffect } from 'react'
 
 
 function App() {
+
+  useEffect(() => {
+    document.title = "Silly Socks and More"
+  }, [])
 
   return (
     <>
