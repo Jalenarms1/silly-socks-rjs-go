@@ -65,7 +65,7 @@ const OrderView = () => {
         const date = new Date(timestamp * 1000)
 
         let hour = date.getHours()
-        const min = date.getMinutes().toString().padEnd(2, "0")
+        const min = date.getMinutes().toString().padStart(2, "0")
 
         hour = hour % 12 || 12
 
