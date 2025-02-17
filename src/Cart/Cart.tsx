@@ -13,6 +13,8 @@ import { FaCheckCircle } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
 import Backbar from '../Shared/Backbar';
+import { TbLoaderQuarter } from "react-icons/tb";
+
 
 type CustomerInfoError = {
     name: string,
@@ -27,6 +29,7 @@ const Cart = ({isSuccess = false}: {isSuccess?: boolean}) => {
     const [paymentStatus, setPaymentStatus] = useState<string>("")
     const [customerInfoError, setCustomerInfoError] = useState<CustomerInfoError>({name: "", email: ""})
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const getSubTotal = (): number => {
         return cartItems.reduce((acc, ci) => acc += ci.subTotal, 0)
@@ -59,6 +62,7 @@ const Cart = ({isSuccess = false}: {isSuccess?: boolean}) => {
     }, [])
 
     const placeOrder = async () => {
+        setIsLoading(true)
         console.log("getting checkout url");
         // const order: Order = {
         //     id: crypto.randomUUID().toUpperCase(),
@@ -96,6 +100,8 @@ const Cart = ({isSuccess = false}: {isSuccess?: boolean}) => {
             console.log(error);
             
         }
+        setIsLoading(false)
+
     }
 
     useEffect(() => {
@@ -179,9 +185,15 @@ const Cart = ({isSuccess = false}: {isSuccess?: boolean}) => {
                             </div>
                         </div>
                         
-                        <div className="w-full flex justify-center">
-                            <button onClick={placeOrder} className='bg-yellow-400 fixed z-[3] bottom-[100px] w-[90vw] text-black font-bold text-lg p-1 rounded-sm shadow-md shadow-zinc-600 active:scale-[.95]'>Place Order</button>
-
+                        <div className="w-full flex justify-center relative">
+                            <button onClick={placeOrder} className='bg-yellow-400 fixed z-[3] bottom-[100px] w-[90vw] text-black font-bold text-lg p-1 rounded-sm shadow-md shadow-zinc-600 active:scale-[.95] flex justify-center'>
+                                {!isLoading ? (
+                                    <p>Place Order</p>
+                                ) : 
+                                    <TbLoaderQuarter className='animate-spin text-red-500 text-3xl' />
+                                }
+                            </button>
+                            
                         </div>
                     </div>
                 </div> : (

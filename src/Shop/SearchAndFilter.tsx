@@ -20,18 +20,18 @@ const SearchAndFilter = ({onViewChange, currProductView, searchTerm, setSearchTe
               </div> */}
           </div>
           <div className="grid grid-cols-4 gap-1 px-1">
-              <p onClick={() => onViewChange("All")} className={`text-sm font-semibold text-center active:scale-[.95] ${currProductView == "All" ? "bg-red-500" : "bg-zinc-400"}   text-white p-1 rounded-sm `}>
+              <button onClick={() => onViewChange("All")} className={`text-sm font-semibold text-center active:scale-[.95] ${currProductView == "All" ? "bg-red-500" : "bg-zinc-400"}   text-white p-1 rounded-sm `}>
               All
-              </p>
-              <p onClick={() => onViewChange("Socks")} className={`text-sm font-semibold text-center active:scale-[.95] ${currProductView == "Socks" ? "bg-red-500" : "bg-zinc-400"}   text-white p-1 rounded-sm `}>
+              </button>
+              <button onClick={() => onViewChange("Socks")} className={`text-sm font-semibold text-center active:scale-[.95] ${currProductView == "Socks" ? "bg-red-500" : "bg-zinc-400"}   text-white p-1 rounded-sm `}>
               Socks
-              </p>
-              <p onClick={() => onViewChange("Slippers")} className={`text-sm font-semibold text-center active:scale-[.95] ${currProductView == "Slippers" ? "bg-red-500" : "bg-zinc-400"}   text-white p-1 rounded-sm `}>
+              </button>
+              <button onClick={() => onViewChange("Slippers")} className={`text-sm font-semibold text-center active:scale-[.95] ${currProductView == "Slippers" ? "bg-red-500" : "bg-zinc-400"}   text-white p-1 rounded-sm `}>
               Slides
-              </p>
-              <p onClick={() => onViewChange("Charms")} className={`text-sm font-semibold text-center active:scale-[.95] ${currProductView == "Charms" ? "bg-red-500" : "bg-zinc-400"}   text-white p-1 rounded-sm `}>
+              </button>
+              <button onClick={() => onViewChange("Charms")} className={`text-sm font-semibold text-center active:scale-[.95] ${currProductView == "Charms" ? "bg-red-500" : "bg-zinc-400"}   text-white p-1 rounded-sm `}>
               Charms
-              </p>
+              </button>
           </div>
       </div>
 

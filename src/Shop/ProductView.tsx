@@ -9,6 +9,7 @@ import Backbar from '../Shared/Backbar'
 import { getProduct } from '../utils'
 import { useFavorites } from '../hooks/useFavorites'
 import { IoIosHeart } from "react-icons/io";
+import { TbLoaderQuarter } from "react-icons/tb";
 
 
 const ProductView = () => {
@@ -18,8 +19,11 @@ const ProductView = () => {
     const {removeFromCart, addToCart, cartItems} = useCartContext()
     const navigate = useNavigate()
     const {userFavorites, toggleFavorite} = useFavorites()
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+
 
     const getProductById = async (productId: string) => {
+        setIsLoading(true)
         // try {
         //     const resp = await fetch(import.meta.env.VITE_API_DOMAIN + "/products/" + productId, {
         //         method: "GET",
@@ -40,6 +44,8 @@ const ProductView = () => {
         // }
         let p = await getProduct(productId)
         setProduct(p)
+
+        setIsLoading(false)
     }
 
     useEffect(() => {
@@ -59,8 +65,8 @@ const ProductView = () => {
   return (
     <div className="min-h-screen relative w-full overflow-x-hidden scrollbar-hide flex flex-col font-mono bg-white">
         <TopBar />
+        <Backbar  />
         {product ? <div className="flex-1">
-            <Backbar  />
             <div className="flex flex-col w-full items-center gap-5 p-5 bg-zinc-100 h-screen">
                 <img src={product.image} alt='product-img' className='object-fill w-80 h-96 rounded-sm shadow-lg shadow-zinc-300' />
                 {/* <div className="w-full h-[0.5px] bg-zinc-300"></div> */}
@@ -93,8 +99,15 @@ const ProductView = () => {
                 </div>
             </div>
         </div> : (
-            <p>Product not found</p>
+            <p></p>
         )}
+        {isLoading && 
+        <div className="min-h-screen p-5 w-full">
+            <div className='w-80 h-96 bg-white shadow-md flex justify-center items-center'>
+                <TbLoaderQuarter className='text-3xl animate-spin' />
+            </div>
+
+        </div> }
     </div>
   )
 }
