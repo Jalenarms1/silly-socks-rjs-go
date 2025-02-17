@@ -16,9 +16,9 @@ const SavedProductsView = () => {
     }, [])
 
   return (
-    <div className='min-h-screen flex flex-col relative'>
+    <div className='min-h-screen flex flex-col relative bg-zinc-100'>
         <Backbar />
-        <div className="grid grid-cols-2 md:grid-cols-6  bg-zinc-100 gap-2 p-1">
+        <div className="grid grid-cols-2 md:grid-cols-6   gap-2 p-1">
             {userFavorites.map(f => (
                 <ProductCard
                     key={f.id} 
