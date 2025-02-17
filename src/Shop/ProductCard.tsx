@@ -7,13 +7,11 @@ import { FaCirclePlus } from "react-icons/fa6";
 interface ProductCardProps {
     product:  Product,
     addToCart: () => void,
-    removeFromCart: () => void,
     existingCartItem?: CartItem,
     onNavigate: () => void,
-    toggleFavorite: (product: Product) => void
 }
 
-const ProductCard = ({product, addToCart, removeFromCart, existingCartItem, onNavigate, toggleFavorite}: ProductCardProps) => {
+const ProductCard = ({product, addToCart, existingCartItem, onNavigate}: ProductCardProps) => {
 
   const handleAction = (e: React.MouseEvent, fn: () => void) => {
     e.stopPropagation()

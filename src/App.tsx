@@ -5,6 +5,7 @@ import { CartProvider } from './context/useCartContext'
 import Cart from './Cart/Cart'
 import OrderView from './Orders/OrderView'
 import ProductView from './Shop/ProductView'
+import SavedProductsView from './Saved/SavedProductsView'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Route path='/cart' element={<Cart/>} />
             <Route path='/cart/success' element={<Cart isSuccess={true}/>} />
             <Route path='/order/:orderId' element={<OrderView />} />
+            <Route path='/saved' element={<SavedProductsView />} />
             <Route path='/products/:productId' element={<ProductView />} />
 
 

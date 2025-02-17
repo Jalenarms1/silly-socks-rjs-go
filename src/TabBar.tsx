@@ -6,6 +6,8 @@ import { MdOutlineAccountBox } from "react-icons/md";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { useCartContext } from './context/useCartContext';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { BsBagHeart } from "react-icons/bs";
+
 
 
 const TabBar = ({}) => {
@@ -28,9 +30,9 @@ const TabBar = ({}) => {
                 <FaShop className='text-2xl' />
                 <p className='font-mono text-xs font-semibold'>Shop</p>
             </div>
-            <div onClick={() => navigate("/orders")} className={`flex flex-col gap-2 items-center ${pathname == "/orders" ? "text-red-500" : "text-zinc-400"} `}>
-                <GoListUnordered className='text-2xl' />
-                <p className='font-mono text-xs font-semibold'>Orders</p>
+            <div onClick={() => navigate("/saved")} className={`flex flex-col gap-2 items-center ${pathname == "/saved" ? "text-red-500" : "text-zinc-400"} `}>
+                <BsBagHeart className='text-2xl' />
+                <p className='font-mono text-xs font-semibold'>Saved</p>
             </div>
             <div onClick={() => navigate("/cart")} className="w-full flex justify-center items-center">
                 <div  className={`flex flex-col gap-2 items-center ${pathname == "/cart" ? "text-red-500" : "text-zinc-400"} relative w-fit`}>

@@ -96,10 +96,8 @@ const ShopView = () => {
                   key={product.id} 
                   product={product} 
                   addToCart={() => addToCart(product)} 
-                  removeFromCart={() => removeFromCart(product, true)} 
                   existingCartItem={cartItems.find((ci) => ci.product.id == product.id)}
                   onNavigate={() => navigate(`/products/${product.id}`)}
-                  toggleFavorite={toggleFavorite}
               />
             )}/>
 

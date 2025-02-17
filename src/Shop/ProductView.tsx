@@ -7,6 +7,8 @@ import { useCartContext } from '../context/useCartContext'
 import { IoIosArrowBack } from "react-icons/io";
 import Backbar from '../Shared/Backbar'
 import { getProduct } from '../utils'
+import { useFavorites } from '../hooks/useFavorites'
+import { IoIosHeart } from "react-icons/io";
 
 
 const ProductView = () => {
@@ -15,6 +17,7 @@ const ProductView = () => {
     const [existingCartItem, setExistingCartItem] = useState<CartItem | null>(null)
     const {removeFromCart, addToCart, cartItems} = useCartContext()
     const navigate = useNavigate()
+    const {userFavorites, toggleFavorite} = useFavorites()
 
     const getProductById = async (productId: string) => {
         // try {
@@ -65,8 +68,8 @@ const ProductView = () => {
                 <div className="flex flex-col gap-2 w-80 mx-auto">
                     <div className="flex justify-between items-center">
                         <p className="text-2xl font-bold text-red-500">{product.price / 100}</p>
-                        <IoIosHeartEmpty className='text-3xl text-zinc-400 active:scale-[.95]' />
-
+                        {!userFavorites.find(f => f.id == product.id) ? <IoIosHeartEmpty onClick={() => toggleFavorite(product)} className='text-3xl text-zinc-400 active:scale-[.95]' /> : <IoIosHeart onClick={() => toggleFavorite(product)} className='text-3xl text-red-500 active:scale-[.95]' />}
+                        {/* IoIosHeart */}
                     </div>
                     <p className='text-zinc-700 '>{product.name}</p>
 
