@@ -11,7 +11,7 @@ import ProductCard from './ProductCard'
 import { useCartContext } from '../context/useCartContext'
 import { useNavigate } from 'react-router-dom'
 import { useFavorites } from '../hooks/useFavorites'
-import { useProducts } from '../hooks/useProducts'
+import { ProductViewType, useProducts } from '../hooks/useProducts'
 
 
 const ShopView = () => {
@@ -19,7 +19,7 @@ const ShopView = () => {
 
   const {userFavorites, toggleFavorite} = useFavorites()
   const [userRecentViewed, setUserRecentViewed] = useLocalStorage<Product[]>(userRecentlyViewedKey, [])
-  const {products, currProductView, setCurrProductView} = useProducts()
+  const {products, currProductView, setCurrProductView, isLoading, searchTerm, setSearchTerm} = useProducts()
 
   const {addToCart, removeFromCart, cartItems} = useCartContext()
 
@@ -83,7 +83,7 @@ const ShopView = () => {
         <div className="flex-1 flex flex-col gap-5 ">
           <div className="flex justify-between p-2">
             <p className='text-3xl font-bold hidden md:block'>Shop</p>
-            <SearchAndFilter />
+            <SearchAndFilter searchTerm={searchTerm} setSearchTerm={setSearchTerm} onViewChange={(view: ProductViewType) => setCurrProductView(view)} currProductView={currProductView} />
 
           </div>
           {/* <div className="flex justify-end text-black pr-2 items-center gap-2 ">
@@ -95,7 +95,7 @@ const ShopView = () => {
             </select>
           </div> */}
           <div className="flex flex-col">
-            <ProductGrid products={products} renderItem={(product) => (
+            <ProductGrid isLoading={isLoading} products={products} renderItem={(product) => (
               <ProductCard 
                   key={product.id} 
                   product={product} 
@@ -107,7 +107,7 @@ const ShopView = () => {
 
             <div className="max-w-[100vw] bg-black flex-1 flex flex-col pb-40 overflow-x-auto pt-10">
               <p className='p-2 text-xl font-bold text-zinc-300'>Recently Viewed</p>
-              <ProductCarousel products={products} renderItem={(product: Product) => (
+              <ProductCarousel  products={products} renderItem={(product: Product) => (
                 <ProductCard 
                   key={product.id} 
                   product={product} 

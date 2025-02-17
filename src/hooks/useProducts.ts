@@ -8,8 +8,11 @@ export const useProducts = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [currProductView, setCurrProductView] = useState<ProductViewType>("All")
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+    const [searchTerm, setSearchTerm] = useState<string>("")
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const getProducts = async () => {
+        setIsLoading(true)
         try {
           const resp = await fetch(import.meta.env.VITE_API_DOMAIN + "/products", {
             method: "GET",
@@ -50,18 +53,41 @@ export const useProducts = () => {
           console.log(error);
           
         }
+        setIsLoading(false)
+
       }
     
     useEffect(() => {
         getProducts()
     
     }, [])
+
+    const filterView = (view: ProductViewType, products: Product[]) => {
+        if (view == "All") { return products }
+        const productArr = products.filter(p => p.category == view)
+
+        return productArr
+    }
+
+    const filterSearch = (search: string, products: Product[]) => {
+        if (search.trim() == "") { return products }
+        const productsArr = products.filter(p => p.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
+
+        return productsArr
+    }
     
     useEffect(() => {
-        if (currProductView == "All")
-        setFilteredProducts(products.filter(p => p.category == currProductView))
-    }, [currProductView])
+        if (currProductView == "All" && searchTerm.trim() == "") {
+            setFilteredProducts(products)
+        } else {
+            let newProducts = filterView(currProductView, products)
+            newProducts = filterSearch(searchTerm, newProducts)
+            setFilteredProducts(newProducts)
 
-    return {products: filteredProducts, currProductView, setCurrProductView}
+        }
+    }, [currProductView, searchTerm])
+
+
+    return {products: filteredProducts, currProductView, setCurrProductView, isLoading, setSearchTerm, searchTerm}
 
 }
