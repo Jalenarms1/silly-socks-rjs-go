@@ -1,3 +1,5 @@
+import { ProductViewType } from "../hooks/useProducts"
+
 export type CartItem = {
     id: string,
     productId: string,
@@ -13,7 +15,7 @@ export type Product = {
     price: number,
     quantity: number,
     image: string,
-    category: "Socks" | "Slides" | "Charms",
+    category: ProductViewType,
     description: string,
     sizes: "Small" | "Medium" | "Large" | "X-Large"[]
 }

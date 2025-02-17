@@ -11,13 +11,15 @@ import ProductCard from './ProductCard'
 import { useCartContext } from '../context/useCartContext'
 import { useNavigate } from 'react-router-dom'
 import { useFavorites } from '../hooks/useFavorites'
+import { useProducts } from '../hooks/useProducts'
+
 
 const ShopView = () => {
   const navigate = useNavigate()
 
   const {userFavorites, toggleFavorite} = useFavorites()
   const [userRecentViewed, setUserRecentViewed] = useLocalStorage<Product[]>(userRecentlyViewedKey, [])
-  const [products, setProducts] = useState<Product[]>([]);
+  const {products, currProductView, setCurrProductView} = useProducts()
 
   const {addToCart, removeFromCart, cartItems} = useCartContext()
 
@@ -26,55 +28,53 @@ const ShopView = () => {
 
   }
 
-  const getProducts = async () => {
-    try {
-      const resp = await fetch(import.meta.env.VITE_API_DOMAIN + "/products", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
+  // const getProducts = async () => {
+  //   try {
+  //     const resp = await fetch(import.meta.env.VITE_API_DOMAIN + "/products", {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       }
+  //     })
 
-      if (resp.status == 200) {
-        const json = await resp.json()
+  //     if (resp.status == 200) {
+  //       const json = await resp.json()
         
-        console.log(json);
-        setProducts(() => {
-          return json.reduce((acc, {id, name, category, description, price, quantity, image, sizes }) => {
-            const product: Product = {
-              id,
-              name,
-              category,
-              description,
-              price,
-              quantity,
-              image, 
-              sizes
+  //       console.log(json);
+  //       setProducts(() => {
+  //         return json.reduce((acc, {id, name, category, description, price, quantity, image, sizes }) => {
+  //           const product: Product = {
+  //             id,
+  //             name,
+  //             category,
+  //             description,
+  //             price,
+  //             quantity,
+  //             image, 
+  //             sizes
   
-            } 
+  //           } 
   
-            acc.push(product)
+  //           acc.push(product)
   
   
-            return acc
-          }, [])
-        })
+  //           return acc
+  //         }, [])
+  //       })
 
-      }
+  //     }
 
       
-    } catch (error) {
-      console.log(error);
+  //   } catch (error) {
+  //     console.log(error);
       
-    }
-  }
+  //   }
+  // }
 
   useEffect(() => {
-    getProducts()
 
     window.scrollTo(0,0)
   }, [])
-
   
 
   return (

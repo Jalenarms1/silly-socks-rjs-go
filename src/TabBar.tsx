@@ -17,7 +17,7 @@ const TabBar = ({}) => {
     const {cartItems} = useCartContext()
 
   return (
-    <div className="flex flex-col fixed bottom-0 w-[100vw] ">
+    <div className="flex flex-col fixed bottom-0 w-[100vw]  bg-zinc-100 md:items-end">
         {/* <div className="w-full flex justify-between items-center p-1 px-2 border-t border-zinc-300 bg-zinc-900">
             <div className="flex flex-col ">
                 <p className='text-red-500 text-xs font-bold'>Checkout</p>
@@ -25,7 +25,7 @@ const TabBar = ({}) => {
             </div>
             <MdKeyboardArrowUp className='text-red-500' />
         </div> */}
-        <div className="grid grid-cols-4 bg-zinc-100 border-t border-zinc-300 w-[100vw] p-2 px-4  items-center ">
+        <div className="grid grid-cols-4  border-t border-zinc-300 w-[100vw] md:w-[25vw] p-2 px-4  items-center ">
             <div onClick={() => navigate("/")} className={`flex flex-col gap-2 items-center ${pathname == "/" ? "text-red-500" : "text-zinc-400"} `}>
                 <FaShop className='text-2xl' />
                 <p className='font-mono text-xs font-semibold'>Shop</p>

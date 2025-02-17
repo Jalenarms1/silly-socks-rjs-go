@@ -13,13 +13,6 @@ const ProductCarousel = ({products, renderItem}: {products: Product[], renderIte
                     renderItem(product)
                 ))}
 
-                {/* "See more" button */}
-                <div className="w-48 flex-shrink-0 rounded-sm border active:scale-[.95] flex flex-col justify-center items-center gap-1 border-zinc-600 p-2 text-red-500">
-                    <div className="flex flex-col items-center gap-2">
-                        <FaRegArrowAltCircleRight className="text-4xl text-zinc-400" />
-                        <p className="text-sm">See more</p>
-                    </div>
-                </div>
             </div>
         </div>
     );
