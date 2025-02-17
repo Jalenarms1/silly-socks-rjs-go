@@ -9,10 +9,11 @@ interface ProductCardProps {
     addToCart: () => void,
     removeFromCart: () => void,
     existingCartItem?: CartItem,
-    onNavigate: () => void
+    onNavigate: () => void,
+    toggleFavorite: (product: Product) => void
 }
 
-const ProductCard = ({product, addToCart, removeFromCart, existingCartItem, onNavigate}: ProductCardProps) => {
+const ProductCard = ({product, addToCart, removeFromCart, existingCartItem, onNavigate, toggleFavorite}: ProductCardProps) => {
 
   const handleAction = (e: React.MouseEvent, fn: () => void) => {
     e.stopPropagation()

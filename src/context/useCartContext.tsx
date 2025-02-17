@@ -33,7 +33,7 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
 
             })])
         } else {
-            setCart([...cart, {id: crypto.randomUUID(), product: product, quantity: 1, subTotal: product.price}])
+            setCart([...cart, {id: crypto.randomUUID(), productId: product.id, product: product, quantity: 1, subTotal: product.price}])
         }
     }
 

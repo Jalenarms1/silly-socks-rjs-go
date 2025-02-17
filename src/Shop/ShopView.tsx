@@ -10,11 +10,12 @@ import { Product } from '../models/Cart'
 import ProductCard from './ProductCard'
 import { useCartContext } from '../context/useCartContext'
 import { useNavigate } from 'react-router-dom'
+import { useFavorites } from '../hooks/useFavorites'
 
 const ShopView = () => {
   const navigate = useNavigate()
 
-  const [userFavorites, setUserFavorites] = useLocalStorage<Product[]>(userFavoritesKey, [])
+  const {userFavorites, toggleFavorite} = useFavorites()
   const [userRecentViewed, setUserRecentViewed] = useLocalStorage<Product[]>(userRecentlyViewedKey, [])
   const [products, setProducts] = useState<Product[]>([]);
 
@@ -98,6 +99,7 @@ const ShopView = () => {
                   removeFromCart={() => removeFromCart(product, true)} 
                   existingCartItem={cartItems.find((ci) => ci.product.id == product.id)}
                   onNavigate={() => navigate(`/products/${product.id}`)}
+                  toggleFavorite={toggleFavorite}
               />
             )}/>
 
