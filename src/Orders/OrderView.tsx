@@ -33,15 +33,15 @@ const OrderView = () => {
     }
 
     const getSubTotal = (order: Order): number => {
-        return parseFloat(order.cartItems.reduce((acc, ci) => acc += ci.subTotal, 0).toFixed(2))
+        return order.cartItems.reduce((acc, ci) => acc += ci.subTotal, 0)
     }
 
     const getTax = (order: Order): number => {
-        return parseFloat(((getSubTotal(order) * 1.08) - getSubTotal(order)).toFixed(2))
+        return (parseFloat(((getSubTotal(order) / 100) * 1.08).toFixed(2))) * 100 - getSubTotal(order)
     }
 
     const getTotalWTax = (order: Order): number => {
-        return parseFloat((getTax(order) + getSubTotal(order) + 5).toFixed(2)) 
+        return getTax(order) + getSubTotal(order) + 500
     }
 
     useEffect(() => {
@@ -106,12 +106,12 @@ const OrderView = () => {
 
                 <div className="flex flex-col">
                     <p className='text-xs text-zinc-400'>Name</p>
-                    <p>{order.customer_details?.name}</p>
+                    <p>{order.customerName}</p>
                 </div>
 
                 <div className="flex flex-col">
                     <p className='text-xs text-zinc-400'>Email</p>
-                    <p>{order.customer_details?.email}</p>
+                    <p>{order.customerEmail}</p>
                 </div>
 
                 <div className="flex flex-col gap-2">
@@ -132,14 +132,14 @@ const OrderView = () => {
                         <p className='text-sm text-zinc-600'>Total:</p>
                     </div>
                     <div className="flex flex-col gap-2 p-2 pt-10">
-                        <p className='text-sm text-black'>${getSubTotal(order).toFixed(2)}</p>
+                        <p className='text-sm text-black'>${(getSubTotal(order) / 100).toFixed(2)}</p>
 
-                        <p className='text-sm text-black'>${getTax(order).toFixed(2)}</p>
+                        <p className='text-sm text-black'>${(getTax(order) / 100).toFixed(2)}</p>
 
                         <p className='text-sm text-black'>$5.00</p>
 
 
-                        <p className='text-sm text-black'>${getTotalWTax(order).toFixed(2)}</p>
+                        <p className='text-sm text-black'>${(getTotalWTax(order) / 100).toFixed(2)}</p>
                     </div>
                 </div>
             </div>}

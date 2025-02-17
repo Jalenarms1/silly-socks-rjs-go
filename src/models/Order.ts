@@ -5,20 +5,16 @@ export type Order = {
     cartItems: CartItem[]
     subTotal: number,
     tax: number,
-    shipping: number,
-    shipping_details?: {
-        city: string,
-        country: string,
-        line1: string,
-        line2?: string,
-        postal_code: string,
-        state: string
-    },
-    customer_details?: {
-        name: string,
-        email: string
-    }
-    finalTotal: number,
+    shippingTotal: number,
+    shippingCity: string,
+    shippingCountry: string,
+    shippingLine1: string,
+    shippingLine2?: string,
+    shippingPostal_code: string,
+    shippingState: string,
+    customerName: string,
+    customerEmail: string,
+    grandTotal: number,
     createdAt: number,
     status: "Unpaid" | "Paid" | "Refunded" | "Comfirmed" | "Shipped"
 }

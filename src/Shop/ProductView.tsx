@@ -58,17 +58,17 @@ const ProductView = () => {
         <TopBar />
         {product ? <div className="flex-1">
             <Backbar  />
-            <div className="flex flex-col w-full items-center gap-5 p-5 bg-zinc-900 h-screen">
-                <img src={product.image} alt='product-img' className='object-fill w-80 h-96 rounded-sm shadow-lg shadow-zinc-700' />
+            <div className="flex flex-col w-full items-center gap-5 p-5 bg-zinc-100 h-screen">
+                <img src={product.image} alt='product-img' className='object-fill w-80 h-96 rounded-sm shadow-lg shadow-zinc-300' />
                 {/* <div className="w-full h-[0.5px] bg-zinc-300"></div> */}
 
                 <div className="flex flex-col gap-2 w-80 mx-auto">
                     <div className="flex justify-between items-center">
-                        <p className="text-2xl font-semibold text-yellow-500">{product.price / 100}</p>
+                        <p className="text-2xl font-bold text-red-500">{product.price / 100}</p>
                         <IoIosHeartEmpty className='text-3xl text-zinc-400 active:scale-[.95]' />
 
                     </div>
-                    <p className='text-zinc-300 '>{product.name}</p>
+                    <p className='text-zinc-700 '>{product.name}</p>
 
                     <div className="flex flex-col gap-4 mt-5">
                         {!existingCartItem ? <div onClick={() => addToCart(product)} className='flex items-center justify-center active:scale-[.95] w-full bg-red-500 px-2 py-4  rounded-sm gap-2'>

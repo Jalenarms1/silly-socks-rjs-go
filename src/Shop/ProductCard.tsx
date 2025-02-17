@@ -21,12 +21,12 @@ const ProductCard = ({product, addToCart, removeFromCart, existingCartItem, onNa
   }
 
   return (
-    <div onClick={onNavigate} className="max-w-full flex flex-col gap-1 border-zinc-300 text-red-500 bg-white shadow-sm p-1">
-        <img src={product.image} alt='image product' className='object-fill min-h-40 max-h-40 w-full' />
-        <div className="flex items-center justify-between gap-10">
+    <div onClick={onNavigate} className="max-w-full flex flex-col gap-1 border-zinc-300 text-red-500 bg-white shadow-sm rounded-md">
+        <img src={product.image} alt='image product' className='object-fill  rounded-md min-h-60 max-h-60 w-full' />
+        <div className="flex items-center justify-between gap-10 bg-zinc-100 p-1 shadow-sm rounded-md">
             <div className="flex flex-col">
-                <p>{product.price / 100}</p>
-                <p className='text-sm text-zinc-500 font-sans'>{product.name}</p>
+                <p className='font-semibold'>{product.price / 100}</p>
+                {/* <p className='text-sm text-zinc-500 font-sans'>{product.name}</p> */}
             </div>
             <div onClick={(e) => handleAction(e, addToCart)} className="w-fit relative flex">
                 <FaCirclePlus className='text-yellow-500 text-4xl' />
