@@ -35,11 +35,11 @@ const OrderCartItem = ({ci}: {ci: CartItem}) => {
 
   return (
     <div key={ci.id} className='rounded-md border border-zinc-200 flex items-start gap-2'>
-        <img src={product?.image ?? ""} alt='cart item' className='w-20 h-20 object-fill p-2 bg-yellow-300 shadow-md'/>
+        <img src={product?.image} alt='cart item' className='w-20 h-20 object-fill p-2 bg-yellow-300 shadow-md'/>
         <div className="flex flex-col gap-2">
-            <p className='text-base font-semibold text-red-500'>{product?.name ?? ""}</p>
+            <p className='text-base font-semibold text-red-500'>{product?.name}</p>
             <p className='text-zinc-400 text-xs'>Quanitity: <span className='text-black'>{ci.quantity}</span></p>
-            <p className='text-zinc-400 text-xs'>Price: <span className='text-black'>{(product?.price * ci.quantity) / 100 ?? ""}</span></p>
+            <p className='text-zinc-400 text-xs'>Price: <span className='text-black'>{(product?.price * ci.quantity) / 100}</span></p>
 
         </div>
     
