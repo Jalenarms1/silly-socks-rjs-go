@@ -16,14 +16,7 @@ const ShopView = () => {
 
   const [userFavorites, setUserFavorites] = useLocalStorage<Product[]>(userFavoritesKey, [])
   const [userRecentViewed, setUserRecentViewed] = useLocalStorage<Product[]>(userRecentlyViewedKey, [])
-  const [products, setProducts] = useState<Product[]>([
-    { id: "1", name: "Recees Socks", quantity: -1, description: "", price: 9.99, image: "https://firebasestorage.googleapis.com/v0/b/silly-socks-e0923.firebasestorage.app/o/public%2FIMG_2125.JPG?alt=media&token=2a752fc3-3f8d-431e-aa24-49326ea5d92a", category: "Socks", sizes: [] },
-    { id: "2", name: "Hershey Kiss", quantity: -1, description: "", price: 10.99, image: "https://firebasestorage.googleapis.com/v0/b/silly-socks-e0923.firebasestorage.app/o/public%2FIMG_2121.JPG?alt=media&token=0380de3a-8242-45ae-8228-2bc6e87be0a3", category: "Socks", sizes: [] },
-    { id: "3", name: "Spongebob Tube Socks", quantity: -1, description: "", price: 11.99, image: "https://firebasestorage.googleapis.com/v0/b/silly-socks-e0923.firebasestorage.app/o/public%2FIMG_2107.JPG?alt=media&token=2cb7b12d-9178-4bfb-9cee-2b289979576b", category: "Socks", sizes: [] },
-    { id: "4", name: "Tapatío Spicy Slides", quantity: -1, description: "", price: 29.99, image: "https://firebasestorage.googleapis.com/v0/b/silly-socks-e0923.firebasestorage.app/o/public%2FIMG_2106.jpg?alt=media&token=736744e2-f674-402e-96a3-08098457cbad", category: "Slides", sizes: [] },
-    { id: "5", name: "Mtn Dew Slides", quantity: -1, description: "", price: 29.99, image: "https://firebasestorage.googleapis.com/v0/b/silly-socks-e0923.firebasestorage.app/o/public%2FIMG_2095.jpg?alt=media&token=5c64a8f8-cc3a-40f1-989a-a7c3e92dcce4", category: "Slides", sizes: [] },
-    { id: "6", name: "Sour Patch Slippers", quantity: -1, description: "", price: 29.99, image: "https://firebasestorage.googleapis.com/v0/b/silly-socks-e0923.firebasestorage.app/o/public%2FIMG_2094.jpg?alt=media&token=14fbc6c6-3091-4f6f-aa7a-4167ba0f3fbf", category: "Slides", sizes: [] },
-  ]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   const {addToCart, removeFromCart, cartItems} = useCartContext()
 
