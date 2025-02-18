@@ -5,8 +5,8 @@ import { userCartKey } from "../keys";
 
 interface CartContextProps {
     cartItems: CartItem[],
-    addToCart: (product: Product) => void,
-    removeFromCart: (product: Product, decrement: boolean) => void
+    addToCart: (product: Product, size: string) => void,
+    removeFromCart: (product: Product, size: string, decrement: boolean) => void
     clearCart: () => void
 }
 
@@ -16,15 +16,15 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
     const [cart, setCart] = useLocalStorage<CartItem[]>(userCartKey, [])
 
 
-    const addToCart = (product: Product) => {
+    const addToCart = (product: Product, size: string) => {
         console.log(product);
         
-        let existingCartItem = cart.find(ci => ci.product.id == product.id)
+        let existingCartItem = cart.find(ci => ci.product.id == product.id && ci.size == size)
         if (existingCartItem){
             existingCartItem.quantity += 1
             existingCartItem.subTotal = parseFloat((existingCartItem.quantity * existingCartItem.product.price).toFixed(2))
             setCart([...cart.map(ci => {
-                if (ci.product.id != product.id) {
+                if (ci.product.id != product.id || (ci.product.id == product.id && ci.size != size)) {
                     return ci
 
                 } else {
@@ -33,15 +33,15 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
 
             })])
         } else {
-            setCart([...cart, {id: crypto.randomUUID(), productId: product.id, product: product, quantity: 1, subTotal: product.price}])
+            setCart([...cart, {id: crypto.randomUUID(), productId: product.id, product: product, quantity: 1, subTotal: product.price, size}])
         }
     }
 
-    const removeFromCart = (product: Product, decrement: boolean) => {
-        let existingCartItem = cart.find(ci => ci.product.id == product.id)
+    const removeFromCart = (product: Product, size: string, decrement: boolean) => {
+        let existingCartItem = cart.find(ci => ci.product.id == product.id && ci.size == size)
         if (existingCartItem){
             if (!decrement) { 
-                setCart([...cart.filter(ci => ci.product.id != product.id)]) 
+                setCart([...cart.filter(ci => ci.product.id != product.id || (ci.product.id == product.id && ci.size != size))]) 
                 return
             }
 
@@ -49,7 +49,7 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
                 existingCartItem.quantity -= 1
                 existingCartItem.subTotal = parseFloat((existingCartItem.quantity * existingCartItem.product.price).toFixed(2))
                 setCart([...cart.map(ci => {
-                    if (ci.product.id != product.id) {
+                    if (ci.product.id != product.id || (ci.product.id == product.id && ci.size != size)) {
                         return ci
     
                     } else {
@@ -58,7 +58,7 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
     
                 })])
             } else {
-                setCart([...cart.filter(ci => ci.product.id != product.id)])
+                setCart([...cart.filter(ci => ci.product.id != product.id || (ci.product.id == product.id && ci.size != size))])
 
             }
         } else {

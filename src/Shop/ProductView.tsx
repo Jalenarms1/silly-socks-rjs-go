@@ -20,6 +20,7 @@ const ProductView = () => {
     const navigate = useNavigate()
     const {userFavorites, toggleFavorite} = useFavorites()
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [productSize, setProductSize] = useState<string>("")
 
 
     const getProductById = async (productId: string) => {
@@ -58,9 +59,19 @@ const ProductView = () => {
         window.scrollTo(0,0)
       }, [])
 
+    useEffect(() => {
+        if (product) {
+            setProductSize(product.sizes.split(",")[0])
+        }
+    }, [product])
+
    useEffect(() => {
-    setExistingCartItem(cartItems.find(ci => ci.product.id == productId))
+    setExistingCartItem(cartItems.find(ci => ci.product.id == productId && ci.size == productSize))
    }, [productId, cartItems])
+
+   useEffect(() => {
+    setExistingCartItem(cartItems.find(ci => ci.product.id == productId && ci.size == productSize))
+   }, [productSize])
 
   return (
     <div className="min-h-screen relative w-full overflow-x-hidden scrollbar-hide flex flex-col font-mono bg-white">
@@ -77,17 +88,30 @@ const ProductView = () => {
                         {!userFavorites.find(f => f.id == product.id) ? <IoIosHeartEmpty onClick={() => toggleFavorite(product)} className='text-3xl text-zinc-400 active:scale-[.95]' /> : <IoIosHeart onClick={() => toggleFavorite(product)} className='text-3xl text-red-500 active:scale-[.95]' />}
                         {/* IoIosHeart */}
                     </div>
-                    <p className='text-zinc-700 '>{product.name}</p>
+                    <div className="flex flex-col gap-5">
+                        <p className='text-zinc-700 '>{product.name}</p>
+
+                        <div className="flex flex-col gap-1">
+                            <p className="text-sm text-zinc-400">Sizes</p>
+                            <div className="flex items-center gap-2">
+                                {product.sizes.split(",").map(s => (
+                                    <button onClick={() => setProductSize(s)} className={`p-1 px-2  ${productSize == s ? "bg-yellow-500 " : "bg-zinc-200"} rounded-md text-zinc-700`}>{s}</button>
+
+                                ))}
+                                
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="flex flex-col gap-4 mt-5">
-                        {!existingCartItem ? <div onClick={() => addToCart(product)} className='flex items-center justify-center active:scale-[.95] w-full bg-red-500 px-2 py-4  rounded-sm gap-2'>
+                        {!existingCartItem ? <div onClick={() => addToCart(product, productSize)} className='flex items-center justify-center active:scale-[.95] w-full bg-red-500 px-2 py-4  rounded-sm gap-2'>
                             <IoMdCart className='text-white' />
                             <p className='text-sm text-white font-semibold'>Add to cart</p>
                         </div> : (
                             <div className=' items-center justify-center w-full text-white grid grid-cols-3  rounded-sm   gap-2 '>
-                                <button onClick={() => removeFromCart(product, true)} className='bg-red-500 rounded-md text-lg px-2 py-4 '>-</button>
+                                <button onClick={() => removeFromCart(product, productSize, true)} className='bg-red-500 rounded-md text-lg px-2 py-4 '>-</button>
                                 <p className='text-base text-black font-bold text-center'>{existingCartItem.quantity}</p>
-                                <button onClick={() => addToCart(product)} className='text-lg px-2 py-4  bg-red-500 rounded-md'>+</button>
+                                <button onClick={() => addToCart(product, productSize)} className='text-lg px-2 py-4  bg-red-500 rounded-md'>+</button>
                             </div>
                         )}
                         <div onClick={() => navigate("/cart")} className='flex items-center justify-center active:scale-[.95] w-full border border-red-500 px-2 py-4 rounded-sm gap-2 text-red-500'>

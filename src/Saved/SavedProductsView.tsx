@@ -22,7 +22,7 @@ const SavedProductsView = () => {
             {userFavorites.map(f => (
                 <ProductCard
                     key={f.id} 
-                    addToCart={() => addToCart(f)}
+                    addToCart={() => addToCart(f, null)}
                     existingCartItem={cartItems.find(p => p.product.id == f.id)}
                     onNavigate={() => navigate(`/products/${f.id}`)}
                     product={f}

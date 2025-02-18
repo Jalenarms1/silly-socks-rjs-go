@@ -152,10 +152,10 @@ const Cart = ({isSuccess = false}: {isSuccess?: boolean}) => {
                                 <div className="flex flex-col gap-2">
                                     <p className='text-base font-semibold text-red-500'>{ci.product.name}</p>
                                     <div className="flex items-center gap-4 flex-1">
-                                        <p onClick={() => removeFromCart(ci.product, true)} className='px-2 border rounded-sm border-zinc-300'>-</p>
+                                        <p onClick={() => removeFromCart(ci.product, ci.size, true)} className='px-2 border rounded-sm border-zinc-300'>-</p>
                                         <p className='text-sm'>{ci.quantity}</p>
-                                        <p onClick={() => addToCart(ci.product)} className='px-2 border border-zinc-300 rounded-sm'>+</p>
-                                        <LuTrash2 onClick={() => removeFromCart(ci.product, false)} className='text-red-500' />
+                                        <p onClick={() => addToCart(ci.product, ci.size)} className='px-2 border border-zinc-300 rounded-sm'>+</p>
+                                        <LuTrash2 onClick={() => removeFromCart(ci.product, ci.size, false)} className='text-red-500' />
                                     </div>
                                 </div>
                             </div>

@@ -66,6 +66,7 @@ const OrderView = () => {
 
         let hour = date.getHours()
         const min = date.getMinutes().toString().padStart(2, "0")
+        const period = hour < 12 ? "AM" : "PM"; // Determine AM or PM
 
         hour = hour % 12 || 12
 
@@ -75,7 +76,7 @@ const OrderView = () => {
             year: "numeric"
         })
 
-        return `${hour.toString().padStart(2, "0")}:${min} ${dateStr}`
+        return `${hour.toString().padStart(2, "0")}:${min} ${period} ${dateStr}`
     }
 
   return (
@@ -88,7 +89,7 @@ const OrderView = () => {
            {order &&  <div className="flex flex-col gap-4">
                 <div className="flex flex-col">
                     <p className='text-xs text-zinc-400'>Order Id</p>
-                    <p>{order.id.split("-").at(-1)}</p>
+                    <p>{order.id.split("-").at(-1).toUpperCase()}</p>
                 </div>
 
                 <div className="flex flex-col">
@@ -100,16 +101,18 @@ const OrderView = () => {
                     <p className='text-xs text-zinc-400'>Placed at</p>
                     <p className=''>{secondsToDateTime(order.createdAt)}</p>
                 </div>
-
-                <div className="flex flex-col">
-                    <p className='text-xs text-zinc-400'>Name</p>
-                    <p>{order.customerName}</p>
-                </div>
-
                 <div className="flex flex-col">
                     <p className='text-xs text-zinc-400'>Email</p>
                     <p>{order.customerEmail}</p>
                 </div>
+
+                <div className="flex flex-col">
+                    <p className='text-xs text-zinc-400'>Shipping to</p>
+                    <p>{order.customerName}</p>
+                    <p>{order.shippingLine1} {order.shippingLine2 ?? ""}</p>
+                    <p>{order.shippingCity} {order.shippingState} {order.shippingPostalCode}</p>
+                </div>
+
 
                 <div className="flex flex-col gap-2">
                     <p className='text-xs text-zinc-400'>Items</p>

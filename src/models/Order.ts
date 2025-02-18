@@ -10,7 +10,7 @@ export type Order = {
     shippingCountry: string,
     shippingLine1: string,
     shippingLine2?: string,
-    shippingPostal_code: string,
+    shippingPostalCode: string,
     shippingState: string,
     customerName: string,
     customerEmail: string,

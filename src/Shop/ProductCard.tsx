@@ -6,7 +6,7 @@ import { FaCirclePlus } from "react-icons/fa6";
 
 interface ProductCardProps {
     product:  Product,
-    addToCart: () => void,
+    addToCart: (size: string | null) => void,
     existingCartItem?: CartItem,
     onNavigate: () => void,
 }
@@ -27,7 +27,7 @@ const ProductCard = ({product, addToCart, existingCartItem, onNavigate}: Product
                 <p className='font-semibold'>{product.price / 100}</p>
                 {/* <p className='text-sm text-zinc-500 font-sans'>{product.name}</p> */}
             </div>
-            <div onClick={(e) => handleAction(e, addToCart)} className="w-fit relative flex">
+            <div onClick={(e) => handleAction(e, () => addToCart(null))} className="w-fit relative flex">
                 <FaCirclePlus className='text-yellow-500 text-4xl' />
                {existingCartItem && <div  className="absolute right-5 w-4 h-4 top-[-5px] bg-red-600 rounded-full border border-zinc-300 flex justify-center items-center text-white "><p className='text-xs'>{existingCartItem.quantity}</p></div>}
             </div>

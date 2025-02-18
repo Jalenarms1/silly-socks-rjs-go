@@ -5,7 +5,8 @@ export type CartItem = {
     productId: string,
     product: Product,
     quantity: number,
-    subTotal: number
+    subTotal: number,
+    size: string
 
 }
 
@@ -17,6 +18,6 @@ export type Product = {
     image: string,
     category: ProductViewType,
     description: string,
-    sizes: "Small" | "Medium" | "Large" | "X-Large"[]
+    sizes: string
 }
 

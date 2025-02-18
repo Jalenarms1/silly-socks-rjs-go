@@ -94,18 +94,18 @@ const ShopView = () => {
               <option value="Price: low to high" className='text-xs'>Price: high to low</option>
             </select>
           </div> */}
-          <div className="flex flex-col">
+          <div className="flex flex-col min-h-screen bg-zinc-200 pb-20">
             <ProductGrid isLoading={isLoading} products={products} renderItem={(product) => (
               <ProductCard 
                   key={product.id} 
                   product={product} 
-                  addToCart={() => addToCart(product)} 
+                  addToCart={(size: string | null) => addToCart(product, size ?? product.sizes.split(",")[0])} 
                   existingCartItem={cartItems.find((ci) => ci.product.id == product.id)}
                   onNavigate={() => navigate(`/products/${product.id}`)}
               />
             )}/>
 
-            <div className="max-w-[100vw] bg-black flex-1 flex flex-col pb-40 overflow-x-auto pt-10">
+            {/* <div className="max-w-[100vw] bg-black flex-1 flex flex-col pb-40 overflow-x-auto pt-10">
               <p className='p-2 text-xl font-bold text-zinc-300'>Recently Viewed</p>
               <ProductCarousel  products={products} renderItem={(product: Product) => (
                 <ProductCard 
@@ -117,7 +117,7 @@ const ShopView = () => {
                 />
               )}
               />
-            </div>
+            </div> */}
 
           </div>
         </div>
