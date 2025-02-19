@@ -25,7 +25,7 @@ const TabBar = ({}) => {
             </div>
             <MdKeyboardArrowUp className='text-red-500' />
         </div> */}
-        <div className="grid grid-cols-4  border-t border-zinc-300 w-[100vw] md:w-[25vw] p-2 px-4  items-center ">
+        <div className="grid grid-cols-3  border-t border-zinc-300 w-[100vw] md:w-[25vw] p-2 px-4  items-center ">
             <div onClick={() => navigate("/")} className={`flex flex-col gap-2 items-center ${pathname == "/" ? "text-red-500" : "text-zinc-400"} `}>
                 <FaShop className='text-2xl' />
                 <p className='font-mono text-xs font-semibold'>Shop</p>
@@ -42,10 +42,10 @@ const TabBar = ({}) => {
                 </div>
 
             </div>
-            <div onClick={() => navigate("/account")} className={`flex flex-col gap-2 items-center ${pathname == "/account" ? "text-red-500" : "text-zinc-400"} `}>
+            {/* <div onClick={() => navigate("/account")} className={`flex flex-col gap-2 items-center ${pathname == "/account" ? "text-red-500" : "text-zinc-400"} `}>
                 <MdOutlineAccountBox className='text-2xl' />
                 <p className='font-mono text-xs font-semibold '>Account</p>
-            </div>
+            </div> */}
         </div>
 
     </div>
